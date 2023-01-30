@@ -12,17 +12,6 @@ export const loadRecipe = async function (id) {
 
         const data = await getJSON(`${API_URL}/${id}`)
 
-        // const res = await fetch(
-        //   `${API_URL}/${id}`);
-        // `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);
-        // const data = await getJSON(`${API_URL}/${id}`);
-
-        // const data = await res.json();
-        //
-        // if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-        //
-        // console.log(res, data);
-
 
         const { recipe } = data.data;
         state.recipe = {
