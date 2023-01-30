@@ -48,5 +48,7 @@ await model.loadRecipe(id);
 
 // showRecipe();
 
-['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controlRecipes));
-// window.addEventListener('hashchanges', controlRecipes);
+const init = function () {
+    recipeView.addHandlerRender(controlRecipes);
+};
+init();
