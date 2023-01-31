@@ -43,6 +43,7 @@ await model.loadRecipe(id);
 
 } catch (err) {
     console.log(err);
+recipeView.renderError();
 }
 };
 
