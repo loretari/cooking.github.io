@@ -65,11 +65,11 @@ const controlServings = function (newServings) {
 
 const controlAddBookmark = function () {
     // 1)Add/remove bookmarks
-    model.addBookmark(model.state.recipe);
+
     if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
     else model.deleteBookmark(model.state.recipe.id);
 
-    console.log(model.state.recipe);
+    // console.log(model.state.recipe);
 
     // 2) Update recipe view
     recipeView.update(model.state.recipe);
