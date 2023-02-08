@@ -1,7 +1,8 @@
 import { async } from 'regenerator-runtime';
 import 'regenerator-runtime';
 import { API_URL, KEY } from "./config.js";
-import {getJSON, sendJSON} from "./helpers.js";
+import { AJAX } from "./helpers.js";
+// import {getJSON, sendJSON} from "./helpers.js";
 import {RES_PER_PAGE} from "./config";
 
 export  const state = {
@@ -33,7 +34,7 @@ const createRecipeObject = function (data) {
 export const loadRecipe = async function (id) {
     try {
 
-        const data = await getJSON(`${API_URL}${id}`)
+        const data = await AJAX(`${API_URL}${id}`)
 state.recipe = createRecipeObject(data);
 
 
@@ -53,7 +54,7 @@ state.recipe = createRecipeObject(data);
 export const loadSearchResult = async function (query) {
     try {
         state.search.query = query;
-const data = await getJSON(`${API_URL}?search=${query}`)
+const data = await AJAX(`${API_URL}?search=${query}`)
         console.log(data);
 
 state.search.results = data.data.recipes.map(rec => {
@@ -147,7 +148,7 @@ if (ingArr.length !== 3) throw new Error('Wrong ingredient format. Please use th
         };
 
 // console.log(recipe);
-        const data = sendJSON(`${API_URL}?key=${KEY}`, recipe);
+        const data = AJAX(`${API_URL}?key=${KEY}`, recipe);
         // console.log(data);
         state.recipe = createRecipeObject(data);
         addBookmark(state.recipe);
