@@ -1,7 +1,7 @@
 import { async } from 'regenerator-runtime';
 import 'regenerator-runtime';
-import { API_URL } from "./config.js";
-import {getJSON} from "./helpers.js";
+import { API_URL, KEY } from "./config.js";
+import {getJSON, sendJSON} from "./helpers.js";
 import {RES_PER_PAGE} from "./config";
 
 export  const state = {
@@ -132,8 +132,26 @@ if(ingArr.length !== 3) throw new Error('Wrong ingredient format. Please use the
        const [quantity, unit, description]  = ingArr;
        return {quantity: quantity ? +quantity : null, unit, description};
     });
-console.log(ingredients);
+
+        const recipe = {
+            title: newRecipe.title,
+            source_url: newRecipe.sourceUrl,
+            image_url: newRecipe.image,
+            publisher: newRecipe.publisher,
+            cooking_time: +newRecipe.cookingTime,
+            servings: +newRecipe.servings,
+            ingredients,
+        }
+
+// console.log(recipe);
+        const data = sendJSON(`${API_URL}?key=${KEY}`, recipe);
+        console.log(data);
     } catch (err) {
         throw err;
     }
+
+
+
+
+
 }
